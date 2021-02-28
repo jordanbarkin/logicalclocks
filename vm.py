@@ -3,19 +3,14 @@ import threading
 import queue
 import requests
 import random
-from random import randrange
-from time import sleep
 import argparse
-import os
-import datetime
 import csv
 import time
-import sys
 
 app = Flask(__name__)
 message_queue = queue.Queue()
 logical_clock_time = 0
-rate = randrange(1, 7)
+rate = random.randrange(1, 7)
 start_time = time.time()
 
 # Networking
@@ -55,7 +50,7 @@ def perform_action():
     global logical_clock_time
     global other_machine__ports
 
-    action = randrange(0, 10)
+    action = random.randrange(0, 10)
     logical_clock_time += 1
 
     if action <= 1:
@@ -78,7 +73,7 @@ def execute_cycle():
 
 def run_machine():
     while True:
-        sleep(1/rate)
+        time.sleep(1/rate)
         execute_cycle()
 
 # args and main routine
