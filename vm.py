@@ -10,7 +10,6 @@ import time
 app = Flask(__name__)
 message_queue = queue.Queue()
 logical_clock_time = 0
-rate = random.randrange(1, 7)
 start_time = 1000*time.time()
 
 # Networking
@@ -83,12 +82,14 @@ if __name__ == '__main__':
     parser.add_argument("-trial", help="Log identification only", default=1)
     parser.add_argument('-others', type=int, nargs='+', help="The ports of the other machines")
     parser.add_argument('-duration', type=int, nargs='+', help="How many seconds to run before exiting", default=60)
+    parser.add_argument('-multiplier', type=int, help="Increase the speeds by this many times.", default=1)
 
     args = parser.parse_args()
 
     port = int(args.port)
     trial = int(args.trial)
     other_machine_ports = args.others
+    rate = random.randrange(1, 7)*int(args.multiplier)
     filename = f"trial_{trial}_port_{port}_clockspeed_{rate}hz.txt"
     duration = args.duration
     end_time = start_time + (1000 * duration)
