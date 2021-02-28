@@ -11,7 +11,7 @@ app = Flask(__name__)
 message_queue = queue.Queue()
 logical_clock_time = 0
 rate = random.randrange(1, 7)
-start_time = time.time()
+start_time = 1000*time.time()
 
 # Networking
 @app.route('/<time>')
@@ -27,12 +27,12 @@ def send_message(target):
 def setup_log():
    with open(filename, "w+") as f:
       writer = csv.writer(f, delimiter = ",")
-      writer.writerow(["event_type", "port", "logical_clock_time", "message_queue_length", "system_time", "clock_speed"])
+      writer.writerow(["event_type", "logical_clock_time", "message_queue_length", "system_time"])
 
 def write_action(event):
     with open(filename, "a+") as f:
         writer = csv.writer(f, delimiter=",")
-        writer.writerow([event, port, logical_clock_time, message_queue.qsize(), int(time.time()-start_time), rate])
+        writer.writerow([event, logical_clock_time, message_queue.qsize(), int(1000*(time.time())-start_time)])
 
 # Machine simulation
 def try_process_message():
@@ -72,7 +72,7 @@ def execute_cycle():
     write_action(event)
 
 def run_machine():
-    while True:
+    while (1000*time.time() <= end_time):
         time.sleep(1/rate)
         execute_cycle()
 
@@ -80,20 +80,26 @@ def run_machine():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-port", help="Port for this machine", default=-1)
-    parser.add_argument("-trial", help="Log identification only", default=3)
+    parser.add_argument("-trial", help="Log identification only", default=1)
     parser.add_argument('-others', type=int, nargs='+', help="The ports of the other machines")
+    parser.add_argument('-duration', type=int, nargs='+', help="How many seconds to run before exiting", default=60)
+
     args = parser.parse_args()
 
     port = int(args.port)
     trial = int(args.trial)
     other_machine_ports = args.others
-    filename = f"trial_{trial}_port_{port}.txt"
+    filename = f"trial_{trial}_port_{port}_clockspeed_{rate}hz.txt"
+    duration = args.duration
+    end_time = start_time + (1000 * duration)
 
     print(f"Running trial {trial} on port {port}. ")
     print(f"Connecting to {str(other_machine_ports)}.")
     print(f"Log will be located at: {filename}.")
     print(f"Picked random clockrate of: {rate}.")
+
     threading.Thread(target=app.run, kwargs={"debug":False, "host":"localhost", "port":port}).start()
     
     setup_log()
     run_machine()
+    print("Finished. Exiting")
