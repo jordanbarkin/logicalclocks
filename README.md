@@ -1,2 +1,2 @@
 # logicalclocks
-For CS261 second programming assignment
+For CS262 second programming assignment
