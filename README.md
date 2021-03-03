@@ -46,6 +46,7 @@ Overall, we did not face too many design difficulties during this assignment. We
   - The current message queue length
   - The current clock time, which should be consistant across VMs, since they all are running on the same physical machine.
 
+In addition, each log is named with its trial number, port, and clockspeed.
 
-
+This provides sufficient data for exploring relationships between clock speed, logical time, and physical clock time, as well as the impact on the frequencies of the different event types on simulation behavior.
 
