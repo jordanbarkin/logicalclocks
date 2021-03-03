@@ -103,8 +103,6 @@ def run_machine():
         execute_cycle()
 
 if __name__ == '__main__':
-
-    #
     parser = argparse.ArgumentParser()
     parser.add_argument("-port", help="Port for this machine", default=12345)
     parser.add_argument("-trial", help="Log identification only", default=1)
