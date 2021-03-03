@@ -32,11 +32,11 @@ Overall, we did not face too many design difficulties during this assignment. We
   - How should the machines discover eachother on startup?
   - How should the machines communicate once they are initialized.
 
-At first, we tried to write an implementation using bare sockets as the method of communication. This led to several challenges:
-  - For every pair of machines, it became necessary to figure out which one should `bind` and which should `connect`. It seemed very difficult to do this without either predetermining this in a configuration file and carefully ordering the connection process or running a server to coordinate the other machines. Neither solution seemed ideal.
-  - If we chose the first option, it would be challenging to dynamically reconfigure the neivornment to try different tests.
+  At first, we tried to write an implementation using bare sockets as the method of communication. This led to several challenges:
+    - For every pair of machines, it became necessary to figure out which one should `bind` and which should `connect`. It seemed very difficult to do this without either predetermining this in a configuration file and carefully ordering the connection process or running a server to coordinate the other machines. Neither solution seemed ideal.
+    - If we chose the first option, it would be challenging to dynamically reconfigure the neivornment to try different tests.
 
-Once we realized that we could use any libraries we wanted for communication, we switched to an easier approach. Each vm hosts its own web application, using the `Flask` framework, on which it is always willing to accept messages from any other machine. Machines are uniquely identified by the port on which they are hosted. Now, all a machine needs to know to run is its own port and a list of the other machines' ports. Each machine exposes a receive message endpoint, and sending a message just involves making a get request to `localhost:<target_port>/<message>`.
+  Once we realized that we could use any libraries we wanted for communication, we switched to an easier approach. Each vm hosts its own web application, using the `Flask` framework, on which it is always willing to accept messages from any other machine. Machines are uniquely identified by the port on which they are hosted. Now, all a machine needs to know to run is its own port and a list of the other machines' ports. Each machine exposes a receive message endpoint, and sending a message just involves making a get request to `localhost:<target_port>/<message>`.
 
 2. The synchronous queue and concurrency by VM seemed like it might pose a challenge at first, but since python provides its concurrent, atomic `queue.Queue` FIFO queue abstraction, using it was an easy choice. Since the Flask endpoint executes asynchronously with the virtual machine simulationm no additional synchronization or logic was required to handle filling and emptying the queue.
 
