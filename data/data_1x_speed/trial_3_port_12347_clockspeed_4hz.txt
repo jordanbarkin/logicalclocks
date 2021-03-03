@@ -1,9 +1,9 @@
 event_type,logical_clock_time,message_queue_length,system_time
 internal,1,0,258
-multisend,2,0,570
+sendall,2,0,570
 internal,3,0,826
 received,6,0,1081
-multisend,7,0,1348
+sendall,7,0,1348
 send,8,0,1617
 send,9,0,1878
 received,11,1,2133
@@ -21,7 +21,7 @@ received,26,0,4950
 internal,27,0,5204
 received,29,0,5455
 internal,30,0,5717
-multisend,31,0,6004
+sendall,31,0,6004
 internal,32,0,6256
 received,34,0,6512
 send,35,0,6768
@@ -80,7 +80,7 @@ internal,104,0,20055
 internal,105,0,20310
 received,107,0,20566
 internal,108,0,20822
-multisend,109,0,21098
+sendall,109,0,21098
 internal,110,0,21350
 internal,111,0,21601
 send,112,0,21871
@@ -111,7 +111,7 @@ internal,145,0,28011
 internal,146,0,28263
 received,147,0,28519
 received,149,0,28773
-multisend,150,0,29054
+sendall,150,0,29054
 internal,151,0,29310
 received,153,0,29566
 internal,154,0,29818
@@ -138,7 +138,7 @@ internal,183,0,34939
 received,185,0,35190
 received,186,0,35446
 received,187,0,35701
-multisend,188,0,35982
+sendall,188,0,35982
 send,189,0,36244
 received,193,0,36500
 internal,194,0,36752
@@ -159,14 +159,14 @@ internal,211,0,40340
 received,212,0,40591
 internal,213,0,40846
 internal,214,0,41102
-multisend,215,0,41375
+sendall,215,0,41375
 internal,216,0,41630
 internal,217,0,41887
 internal,218,0,42140
 internal,219,0,42396
 send,220,0,42661
-multisend,221,0,42950
-multisend,222,0,43239
+sendall,221,0,42950
+sendall,222,0,43239
 send,223,0,43509
 send,224,0,43776
 send,225,0,44044
@@ -178,7 +178,7 @@ internal,235,0,45318
 received,236,0,45571
 received,238,0,45827
 internal,239,0,46083
-multisend,240,0,46366
+sendall,240,0,46366
 internal,241,0,46621
 received,243,0,46877
 internal,244,0,47132
@@ -197,7 +197,7 @@ send,260,0,50199
 send,261,0,50466
 internal,262,0,50719
 received,265,0,50971
-multisend,266,0,51254
+sendall,266,0,51254
 internal,267,0,51510
 received,269,0,51765
 received,270,0,52020
@@ -213,10 +213,10 @@ received,282,0,54321
 received,283,0,54577
 received,284,0,54830
 internal,285,0,55085
-multisend,286,0,55368
+sendall,286,0,55368
 internal,287,0,55624
-multisend,288,0,55905
-multisend,289,1,56193
+sendall,288,0,55905
+sendall,289,1,56193
 received,291,0,56448
 internal,292,0,56703
 received,294,0,56959

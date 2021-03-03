@@ -1,6 +1,6 @@
 event_type,logical_clock_time,message_queue_length,system_time
 internal,1,0,341
-multisend,2,0,716
+sendall,2,0,716
 internal,3,0,1055
 send,4,0,1397
 internal,5,0,1734
@@ -25,7 +25,7 @@ received,24,0,7861
 send,25,0,8216
 internal,26,0,8555
 received,28,0,8894
-multisend,29,0,9244
+sendall,29,0,9244
 internal,30,0,9583
 internal,31,0,9922
 internal,32,0,10259
@@ -50,11 +50,11 @@ internal,52,0,16379
 internal,53,0,16718
 internal,54,0,17053
 internal,55,0,17393
-multisend,56,0,17748
+sendall,56,0,17748
 internal,57,0,18083
 send,58,0,18436
-multisend,59,0,18793
-multisend,60,0,19161
+sendall,59,0,18793
+sendall,60,0,19161
 internal,61,0,19500
 internal,62,0,19839
 received,65,0,20178
@@ -62,7 +62,7 @@ send,66,0,20523
 internal,67,0,20860
 send,68,0,21212
 internal,69,0,21551
-multisend,70,0,21915
+sendall,70,0,21915
 internal,71,0,22252
 internal,72,0,22586
 internal,73,0,22926
@@ -80,14 +80,14 @@ internal,85,0,26659
 internal,86,0,26999
 internal,87,0,27334
 internal,88,0,27669
-multisend,89,1,28034
+sendall,89,1,28034
 received,90,0,28374
 send,91,0,28730
 internal,92,0,29064
-multisend,93,0,29422
+sendall,93,0,29422
 internal,94,0,29762
 send,95,0,30107
-multisend,96,0,30460
+sendall,96,0,30460
 internal,97,0,30796
 internal,98,0,31134
 send,99,0,31486
@@ -109,7 +109,7 @@ internal,116,1,36573
 received,117,0,36910
 send,118,0,37264
 internal,119,0,37602
-multisend,120,0,37960
+sendall,120,0,37960
 internal,121,0,38299
 internal,122,0,38634
 internal,123,0,38973
@@ -122,7 +122,7 @@ internal,129,0,41011
 received,131,0,41350
 received,132,0,41689
 internal,133,0,42028
-multisend,134,0,42389
+sendall,134,0,42389
 internal,135,0,42729
 internal,136,0,43064
 internal,137,0,43399
@@ -149,7 +149,7 @@ internal,158,0,50179
 received,159,0,50519
 received,160,0,50859
 internal,161,0,51198
-multisend,162,0,51565
+sendall,162,0,51565
 internal,163,0,51901
 internal,164,0,52240
 internal,165,0,52580

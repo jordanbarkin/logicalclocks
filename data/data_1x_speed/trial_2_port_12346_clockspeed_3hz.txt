@@ -32,7 +32,7 @@ send,32,0,10260
 send,33,0,10607
 internal,34,0,10945
 internal,35,0,11284
-multisend,36,0,11645
+sendall,36,0,11645
 internal,37,0,11984
 received,39,0,12322
 received,41,0,12661
@@ -57,7 +57,7 @@ received,60,0,18771
 received,61,0,19110
 received,62,0,19449
 internal,63,0,19785
-multisend,64,0,20141
+sendall,64,0,20141
 internal,65,0,20479
 received,67,0,20818
 internal,68,0,21152
@@ -70,10 +70,10 @@ internal,74,0,23200
 received,75,0,23536
 received,76,0,23872
 received,77,0,24207
-multisend,78,0,24570
+sendall,78,0,24570
 send,79,0,24919
 send,80,0,25266
-multisend,81,0,25629
+sendall,81,0,25629
 send,82,0,25981
 internal,83,0,26320
 internal,84,0,26655
@@ -96,13 +96,13 @@ internal,101,0,32099
 internal,102,0,32438
 received,103,0,32777
 received,104,0,33116
-multisend,105,0,33482
+sendall,105,0,33482
 internal,106,0,33821
 internal,107,0,34160
 internal,108,0,34499
 internal,109,0,34839
 received,111,0,35179
-multisend,112,0,35541
+sendall,112,0,35541
 internal,113,0,35875
 internal,114,0,36213
 internal,115,0,36550
@@ -119,7 +119,7 @@ internal,126,0,39961
 internal,127,0,40299
 internal,128,0,40633
 received,129,0,40968
-multisend,130,0,41321
+sendall,130,0,41321
 send,131,0,41668
 internal,132,0,42006
 internal,133,0,42343
@@ -171,7 +171,7 @@ internal,182,0,57753
 received,183,0,58091
 internal,184,0,58430
 send,185,0,58781
-multisend,186,0,59139
+sendall,186,0,59139
 send,187,0,59491
 internal,188,0,59827
 send,189,0,60172
