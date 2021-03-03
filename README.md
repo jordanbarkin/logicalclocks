@@ -1,5 +1,7 @@
 # Logical Clocks Simulation
 
+## Getting Started
+
 `vm.py` contains the virtual machine simulator. It has the following CLI interface:
 
 ```
@@ -24,7 +26,7 @@ python3 vm.py <args>
 ```
 That said, starting a single instance is not very interesting.
 
-# Design Decisions
+## Design Decisions
 
 Overall, we did not face too many design difficulties during this assignment. We've enumerated our decisions and their motivations below.
 
