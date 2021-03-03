@@ -6,6 +6,7 @@ import random
 import argparse
 import csv
 import time
+import sys
 
 app = Flask(__name__)
 message_queue = queue.Queue()
@@ -78,11 +79,11 @@ def run_machine():
 # args and main routine
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("-port", help="Port for this machine", default=-1)
+    parser.add_argument("-port", help="Port for this machine", default=12345)
     parser.add_argument("-trial", help="Log identification only", default=1)
-    parser.add_argument('-others', type=int, nargs='+', help="The ports of the other machines")
-    parser.add_argument('-duration', type=int, nargs='+', help="How many seconds to run before exiting", default=60)
-    parser.add_argument('-multiplier', type=int, help="Increase the speeds by this many times.", default=1)
+    parser.add_argument('-others', type=int, nargs='+', help="The ports of the other machines", default=[])
+    parser.add_argument('-duration', type=int, help="How many seconds to run before exiting", default=60)
+    parser.add_argument('-multiplier', type=int, help="Increase the chosen clockspeed by this many times.", default=1)
 
     args = parser.parse_args()
 
@@ -99,8 +100,10 @@ if __name__ == '__main__':
     print(f"Log will be located at: {filename}.")
     print(f"Picked random clockrate of: {rate}.")
 
-    threading.Thread(target=app.run, kwargs={"debug":False, "host":"localhost", "port":port}).start()
-    
+    threading.Thread(target=app.run, kwargs={"debug":False, "host":"localhost", "port":port}, daemon=True).start()
+
     setup_log()
     run_machine()
-    print("Finished. Exiting")
+    time.sleep(3)
+    print("Finished. Exiting\n")
+    sys.exit()
