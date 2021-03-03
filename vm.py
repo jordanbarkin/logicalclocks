@@ -109,16 +109,18 @@ if __name__ == '__main__':
     parser.add_argument('-others', type=int, nargs='+', help="The ports of the other machines", default=[])
     parser.add_argument('-duration', type=int, help="How many seconds to run before exiting", default=60)
     parser.add_argument('-multiplier', type=int, help="Increase the chosen clockspeed by this many times.", default=1)
+    parser.add_argument('-overridefreq', type=int, help="Set a manual frequency, overriding the default randomly generated value.", default=None)
     args = parser.parse_args()
 
     # initial state
     port = int(args.port)
     trial = int(args.trial)
     other_machine_ports = args.others
-    rate = random.randrange(1, 7)*int(args.multiplier)
+    rate = (args.overridefreq if args.overridefreq else random.randrange(1, 7))*int(args.multiplier)
     filename = f"trial_{trial}_port_{port}_clockspeed_{rate}hz.txt"
     duration = args.duration
     end_time = start_time + (1000 * duration)
+
 
     # startup logging
     print(f"Running trial {trial} on port {port}. ")
