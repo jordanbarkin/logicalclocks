@@ -81,7 +81,7 @@ def perform_action():
     elif action == 3:
         for p in other_machine_ports:
             send_message(p)
-        return "multisend"
+        return "sendall"
     else:
         return "internal"
 
