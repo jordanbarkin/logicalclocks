@@ -40,8 +40,11 @@ Once we realized that we could use any libraries we wanted for communication, we
 
 2. The synchronous queue and concurrency by VM seemed like it might pose a challenge at first, but since python provides its concurrent, atomic `queue.Queue` FIFO queue abstraction, using it was an easy choice. Since the Flask endpoint executes asynchronously with the virtual machine simulationm no additional synchronization or logic was required to handle filling and emptying the queue.
 
-3. When designing our experiments, we spent some time discussing what material to write to the log.
-
+3. When designing our experiments, we spent some time considering what data to write to the log. Ultimately, we settled on each machine logging, for each event:
+  - The type of event (receive, send, sendall, internal)
+  - The current logical clock time
+  - The current message queue length
+  - The current clock time, which should be consistant across VMs, since they all are running on the same physical machine.
 
 
 
