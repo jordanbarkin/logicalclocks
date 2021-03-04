@@ -60,6 +60,8 @@ This provides sufficient data for exploring relationships between clock speed, l
 python3 plotter.py
 ```
 
+The plots are available as pngs in the `data/` folder, with their corresponding tables. 
+
 ### Nominal Speed
 
 Observing the plots generated for each trial in the case of nominal (1x) speed, we observe the following:
