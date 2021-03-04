@@ -51,7 +51,7 @@ def plot_trial(fnames):
     axs[1, 1].set_xlabel('Logical Clock Time', fontsize=14)
 
     fig.set_size_inches(12,6)
-    save_fname = fname[:-4] + '.png'
+    save_fname = 'trial_%s.png' % (trial)
     save_fname = os.path.join(dir, save_fname)
     plt.savefig(save_fname, dpi=300)
 

@@ -36,7 +36,7 @@ Overall, we did not face too many design difficulties during this assignment. We
 
   At first, we tried to write an implementation using bare sockets as the method of communication. This led to several challenges:
     - For every pair of machines, it became necessary to figure out which one should `bind` and which should `connect`. It seemed very difficult to do this without either predetermining this in a configuration file and carefully ordering the connection process or running a server to coordinate the other machines. Neither solution seemed ideal.
-    - If we chose the first option, it would be challenging to dynamically reconfigure the neivornment to try different tests.
+    - If we chose the first option, it would be challenging to dynamically reconfigure the enivornment to try different tests.
 
   Once we realized that we could use any libraries we wanted for communication, we switched to an easier approach. Each VM hosts its own web application, using the `Flask` python framework, which it uses to accept messages from any other machine. Machines are uniquely identified by the port on which they are hosted. Now, all a machine needs to know on startup is its own port and a list of the other machines' ports. Each machine exposes an endpoint to receive messages, and sending a message to it just involves making a get request to `localhost:<target_port>/<message>`.
 
@@ -46,9 +46,8 @@ Overall, we did not face too many design difficulties during this assignment. We
   - The type of event (receive, send, sendall, internal)
   - The current logical clock time
   - The current message queue length
-  - The current clock time, which should be consistant across VMs, since they all are running on the same physical machine.
+  - The current clock time, which should be consistent across VMs, since they all are running on the same physical machine.
 
 In addition, each log is named with its trial number, port, and clockspeed for identification.
 
 This provides sufficient data for exploring relationships between clock speed, logical time, and physical clock time, as well as the impact on the frequencies of the different event types on simulation behavior.
-
