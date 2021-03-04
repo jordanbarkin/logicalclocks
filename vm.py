@@ -67,7 +67,7 @@ def try_process_message():
 
 # Perform an action with the probabilities from the assignment.
 # This is only called if there are no received messages to process in the queue.
-def perform_action():
+def perform_action(test=False):
     global logical_clock_time
     global other_machine__ports
 
@@ -76,11 +76,13 @@ def perform_action():
 
     # Encode the processing rules
     if action <= 2:
-        send_message(random.choice(other_machine_ports))
+        if not test:
+            send_message(random.choice(other_machine_ports))
         return "send"
     elif action == 3:
-        for p in other_machine_ports:
-            send_message(p)
+        if not test:
+            for p in other_machine_ports:
+                send_message(p)
         return "sendall"
     else:
         return "internal"
@@ -117,7 +119,7 @@ if __name__ == '__main__':
     trial = int(args.trial)
     other_machine_ports = args.others
     rate = (args.overridefreq if args.overridefreq else random.randrange(1, 7))*int(args.multiplier)
-    filename = f"trial_{trial}_port_{port}_clockspeed_{rate}hz.txt"
+    filename = f"trial_{trial}_port_{port}_clockspeed_{rate}hz_internal_probability_0.1.txt"
     duration = args.duration
     end_time = start_time + (1000 * duration)
 
