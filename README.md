@@ -51,3 +51,34 @@ Overall, we did not face too many design difficulties during this assignment. We
 In addition, each log is named with its trial number, port, and clockspeed for identification.
 
 This provides sufficient data for exploring relationships between clock speed, logical time, and physical clock time, as well as the impact on the frequencies of the different event types on simulation behavior.
+
+## Analysis
+
+`plotter.py` contains a script used to generate plots for the generated data files. If needed, it can be invoked to re-generate plots with:
+
+```
+python3 plotter.py
+```
+
+### Nominal Speed
+
+Observing the plots generated for each trial in the case of nominal (1x) speed, we observe the following:
+
+1. When the system's machines are close in speed to each other, the logical clocks all appear to stay relatively well synchronized. In other words, the logical clock -- system clock function for each machine appears to have a similar slope for each machine. In this case, we also note that the message queue length appears to never increase past one for each machine, suggesting that each machine is able to handle a message before being sent another. This suggests that as long as the machines can keep up with each other, they will be able to maintain relatively well synchronized logical clocks.
+
+2. When the system contains two faster machines of a similar speed and a slower machine (e.g. 1 Hz, 5 Hz, and 5 Hz), the two faster machines appear to remain relatively well synchronized. However, the slower machine appears to experience significant clock drift, running a logical clock that runs slower (i.e. steeper slope with respect to system clock) than the logical clocks of the faster machines, and with a less consistent rate (i.e. the slope is very jittery). This jives well with the observation that the message queue of the slower machine grows continuously -- it cannot keep up with the rate it is receiving messages from the faster machines. The slower machine quickly falls behind the other machines, constantly reacting to outdated logical clock values of the faster machines -- this causes the increased jerkiness and the slower logical clock.
+
+3. When the system contains two slower machines of a similar speed and a faster machine (e.g. 3 Hz, 6 Hz, 3 Hz), the logical clocks all appear to stay reasonably synchronized. However, the progression of the logical clocks of the two slower machines is much jerkier, with more frequent jumps in logical clock value. This behavior makes sense given the previous observation -- the slower machines have difficulty keeping up with the faster machine. However, the new presence of another machine at the slower rate allows the machines to stay synchronized -- the slower machines can easily keep up with each other, even if they cannot keep up as easily with the faster machine. We also note that the increased jitter in the logical clocks of the slower machines appears to correspond with a greater frequency of the message queue length becoming one (and sometimes greater). The faster machine's logical clock is not very jittery, which corresponds with this machine's message queue length rarely being 1, and normally being empty -- this machine is effectively dominating how the logical clocks are set across the entire system.
+
+4. The speed of the (synchronized) logical clocks appear to be most heavily driven by the fastest running machine. In other words, the presence of a 6 Hz machine appears to allow the logical clocks to progress further over 60 seconds than if the fastest machine only runs at 5 Hz. This is a reasonable observation that naturally arises from the logical clock update rules. Note that the presence of slower machines, assuming the system is still able to remain reasonably synchronized, does appear to slow down the progression of the logical clock somewhat.
+
+
+### Scaled Speed
+
+We then ran similar tests with the possible choices of frequency scaled up from the nominal range of 1 Hz - 6 Hz by 10x (10 Hz - 60 Hz) and 100x (100 Hz - 600 Hz).
+
+We generally observe the same behavior as the nominal case. However we also observe:
+
+1. The effect of previously observed jitter in the logical clock progression caused by mismatched machine rates appears to be significantly lessened as the range of machine speeds is scaled up. Intuitively this makes sense -- much less system time passes between each logical clock update, which causes a "smoothing" effect on the logical clock time-system time plots.
+
+2. The case with two similarly speedy machines with a slow machine progresses as before, with the two faster machines staying well synchronized and the slower machine falling behind on messages, maintaining a slower logical clock. However, the logical clock of the slower machine does not appear to fall behind nearly as much, in a relative sense. We suspect that this is driven by the fact that the logical clocks are updated at a faster rate relative to the true, system time.

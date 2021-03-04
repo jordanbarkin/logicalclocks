@@ -43,11 +43,11 @@ def plot_trial(fnames):
         axs[0, i].plot(df['logical_clock_time'], df['message_queue_length'])
         axs[0, i].set_title('Port %s, %s Hz' % (port, clk_speed), fontsize=16)
 
-        axs[1, i].plot(df['logical_clock_time'], df['system_time'])
+        axs[1, i].plot(df['logical_clock_time'], df['system_time'] / 1000.0)
         i += 1
 
     axs[0, 0].set_ylabel('Message Queue Length', fontsize=14)
-    axs[1, 0].set_ylabel('System Time', fontsize=14) # TODO: check the unit here?
+    axs[1, 0].set_ylabel('System Time (s)', fontsize=14) # TODO: check the unit here?
     axs[1, 1].set_xlabel('Logical Clock Time', fontsize=14)
 
     fig.set_size_inches(12,6)
