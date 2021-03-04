@@ -65,4 +65,5 @@ def test_execute_cycle():
 if __name__ == '__main__':
   test_queue()
   test_execute_cycle()
+  print("All tests passed.")
 

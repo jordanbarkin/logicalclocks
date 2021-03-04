@@ -26,6 +26,14 @@ python3 vm.py <args>
 ```
 That said, starting a single instance is not very interesting.
 
+## Tests
+There is a simple unit test suite in tests.py that checks basic functionality of a single machine and sanity checks the probabilistic aspects of its logic. Since all of the inter-vm communication is handled trivially by Flask, we did not think integration testing the entire simulation would provide any additional useful safeguards.
+
+To run the test suite:
+```
+python3 test.py
+```
+
 ## Design Decisions
 
 Overall, we did not face too many design difficulties during this assignment. We've enumerated our decisions and their motivations below.
@@ -60,7 +68,7 @@ This provides sufficient data for exploring relationships between clock speed, l
 python3 plotter.py
 ```
 
-The plots are available as pngs in the `data/` folder, with their corresponding tables. 
+The plots for each trial are available for reference in each subfolder of the `data/` directory.
 
 ### Nominal Speed
 
