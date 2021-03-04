@@ -82,3 +82,14 @@ We generally observe the same behavior as the nominal case. However we also obse
 1. The effect of previously observed jitter in the logical clock progression caused by mismatched machine rates appears to be significantly lessened as the range of machine speeds is scaled up. Intuitively this makes sense -- much less system time passes between each logical clock update, which causes a "smoothing" effect on the logical clock time-system time plots.
 
 2. The case with two similarly speedy machines with a slow machine progresses as before, with the two faster machines staying well synchronized and the slower machine falling behind on messages, maintaining a slower logical clock. However, the logical clock of the slower machine does not appear to fall behind nearly as much, in a relative sense. We suspect that this is driven by the fact that the logical clocks are updated at a faster rate relative to the true, system time.
+
+
+### Modifying Probability of Internal Events
+
+Finally, we ran additional tests with machines at similar frequencies (7 Hz, 8 Hz, 9 Hz) while varying the probability of internal events. We experimented with the probability of internal events set to 0.5 and to 0.1. We observed:
+
+1. As the machines are operating at similar frequencies, they are able to maintain reasonable logical clock synchronization.
+
+2. Decreasing the probability of internal events appeared to largely affect message queue traffic -- non-empty message queues appeared to become a more frequent occurrence and message queues tended to fill up with more messages (i.e. the max size of the message queue over the simulated minute increased). This makes sense -- less frequent internal events implies more messages being sent between the machines, increasing network traffic and message queue load.
+
+3. It also appears that the decreased rate of internal events leads to less jittery logical clock progression (this is more pronounced when comparing with the nominal rate case). This effect makes sense -- the machines are communicating more frequently about the state of their logical clocks, directly limiting the skew that can exist and drift that develops between the machine's logical clocks before an update can occur. The jumps in logical clock value that will occur are naturally smaller (and therefore the logical clocks are less jittery) as the machines are communicating more frequently.

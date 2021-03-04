@@ -9,7 +9,6 @@ import os
 
 FILE_DIR = os.path.dirname(os.path.realpath(__file__))
 DATA_DIR = os.path.join(FILE_DIR, 'data')
-PLOT_DIR = os.path.join(FILE_DIR, 'plots')
 
 # give our plots some style
 sns.set_style('darkgrid')
@@ -47,7 +46,7 @@ def plot_trial(fnames):
         i += 1
 
     axs[0, 0].set_ylabel('Message Queue Length', fontsize=14)
-    axs[1, 0].set_ylabel('System Time (s)', fontsize=14) # TODO: check the unit here?
+    axs[1, 0].set_ylabel('System Time (s)', fontsize=14)
     axs[1, 1].set_xlabel('Logical Clock Time', fontsize=14)
 
     fig.set_size_inches(12,6)
